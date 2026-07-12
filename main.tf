@@ -13,7 +13,7 @@ resource "azurerm_nginx_deployment" "nginx_deployments" {
   tags                      = each.value.tags
 
   dynamic "auto_scale_profile" {
-    for_each = each.value.auto_scale_profile != null ? [each.value.auto_scale_profile] : []
+    for_each = each.value.auto_scale_profile != null ? each.value.auto_scale_profile : []
     content {
       max_capacity = auto_scale_profile.value.max_capacity
       min_capacity = auto_scale_profile.value.min_capacity
@@ -22,7 +22,7 @@ resource "azurerm_nginx_deployment" "nginx_deployments" {
   }
 
   dynamic "frontend_private" {
-    for_each = each.value.frontend_private != null ? [each.value.frontend_private] : []
+    for_each = each.value.frontend_private != null ? each.value.frontend_private : []
     content {
       allocation_method = frontend_private.value.allocation_method
       ip_address        = frontend_private.value.ip_address
@@ -46,7 +46,7 @@ resource "azurerm_nginx_deployment" "nginx_deployments" {
   }
 
   dynamic "logging_storage_account" {
-    for_each = each.value.logging_storage_account != null ? [each.value.logging_storage_account] : []
+    for_each = each.value.logging_storage_account != null ? each.value.logging_storage_account : []
     content {
       container_name = logging_storage_account.value.container_name
       name           = logging_storage_account.value.name
@@ -54,7 +54,7 @@ resource "azurerm_nginx_deployment" "nginx_deployments" {
   }
 
   dynamic "network_interface" {
-    for_each = each.value.network_interface != null ? [each.value.network_interface] : []
+    for_each = each.value.network_interface != null ? each.value.network_interface : []
     content {
       subnet_id = network_interface.value.subnet_id
     }
