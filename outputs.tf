@@ -1,3 +1,7 @@
+output "nginx_deployments_id" {
+  description = "Map of id values across all nginx_deployments, keyed the same as var.nginx_deployments"
+  value       = { for k, v in azurerm_nginx_deployment.nginx_deployments : k => v.id }
+}
 output "nginx_deployments_auto_scale_profile" {
   description = "Map of auto_scale_profile values across all nginx_deployments, keyed the same as var.nginx_deployments"
   value       = { for k, v in azurerm_nginx_deployment.nginx_deployments : k => v.auto_scale_profile }
