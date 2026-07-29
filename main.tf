@@ -7,9 +7,7 @@ resource "azurerm_nginx_deployment" "nginx_deployments" {
   sku                       = each.value.sku
   automatic_upgrade_channel = each.value.automatic_upgrade_channel
   capacity                  = each.value.capacity
-  diagnose_support_enabled  = each.value.diagnose_support_enabled
   email                     = each.value.email
-  managed_resource_group    = each.value.managed_resource_group
   tags                      = each.value.tags
 
   dynamic "auto_scale_profile" {
@@ -42,14 +40,6 @@ resource "azurerm_nginx_deployment" "nginx_deployments" {
     content {
       identity_ids = identity.value.identity_ids
       type         = identity.value.type
-    }
-  }
-
-  dynamic "logging_storage_account" {
-    for_each = each.value.logging_storage_account != null ? each.value.logging_storage_account : []
-    content {
-      container_name = logging_storage_account.value.container_name
-      name           = logging_storage_account.value.name
     }
   }
 

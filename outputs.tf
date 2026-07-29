@@ -18,10 +18,6 @@ output "nginx_deployments_dataplane_api_endpoint" {
   description = "Map of dataplane_api_endpoint values across all nginx_deployments, keyed the same as var.nginx_deployments"
   value       = { for k, v in azurerm_nginx_deployment.nginx_deployments : k => v.dataplane_api_endpoint if v.dataplane_api_endpoint != null && length(v.dataplane_api_endpoint) > 0 }
 }
-output "nginx_deployments_diagnose_support_enabled" {
-  description = "Map of diagnose_support_enabled values across all nginx_deployments, keyed the same as var.nginx_deployments"
-  value       = { for k, v in azurerm_nginx_deployment.nginx_deployments : k => v.diagnose_support_enabled if v.diagnose_support_enabled != null }
-}
 output "nginx_deployments_email" {
   description = "Map of email values across all nginx_deployments, keyed the same as var.nginx_deployments"
   value       = { for k, v in azurerm_nginx_deployment.nginx_deployments : k => v.email if v.email != null && length(v.email) > 0 }
@@ -45,14 +41,6 @@ output "nginx_deployments_ip_address" {
 output "nginx_deployments_location" {
   description = "Map of location values across all nginx_deployments, keyed the same as var.nginx_deployments"
   value       = { for k, v in azurerm_nginx_deployment.nginx_deployments : k => v.location if v.location != null && length(v.location) > 0 }
-}
-output "nginx_deployments_logging_storage_account" {
-  description = "Map of logging_storage_account values across all nginx_deployments, keyed the same as var.nginx_deployments"
-  value       = { for k, v in azurerm_nginx_deployment.nginx_deployments : k => v.logging_storage_account if v.logging_storage_account != null && length(v.logging_storage_account) > 0 }
-}
-output "nginx_deployments_managed_resource_group" {
-  description = "Map of managed_resource_group values across all nginx_deployments, keyed the same as var.nginx_deployments"
-  value       = { for k, v in azurerm_nginx_deployment.nginx_deployments : k => v.managed_resource_group if v.managed_resource_group != null && length(v.managed_resource_group) > 0 }
 }
 output "nginx_deployments_name" {
   description = "Map of name values across all nginx_deployments, keyed the same as var.nginx_deployments"
