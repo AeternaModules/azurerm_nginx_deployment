@@ -28,11 +28,11 @@ output "nginx_deployments_frontend_private" {
 }
 output "nginx_deployments_frontend_public" {
   description = "Map of frontend_public values across all nginx_deployments, keyed the same as var.nginx_deployments"
-  value       = { for k, v in azurerm_nginx_deployment.nginx_deployments : k => v.frontend_public if v.frontend_public != null && length(v.frontend_public) > 0 }
+  value       = { for k, v in azurerm_nginx_deployment.nginx_deployments : k => one(v.frontend_public) if v.frontend_public != null && length(v.frontend_public) > 0 }
 }
 output "nginx_deployments_identity" {
   description = "Map of identity values across all nginx_deployments, keyed the same as var.nginx_deployments"
-  value       = { for k, v in azurerm_nginx_deployment.nginx_deployments : k => v.identity if v.identity != null && length(v.identity) > 0 }
+  value       = { for k, v in azurerm_nginx_deployment.nginx_deployments : k => one(v.identity) if v.identity != null && length(v.identity) > 0 }
 }
 output "nginx_deployments_ip_address" {
   description = "Map of ip_address values across all nginx_deployments, keyed the same as var.nginx_deployments"
@@ -68,6 +68,6 @@ output "nginx_deployments_tags" {
 }
 output "nginx_deployments_web_application_firewall" {
   description = "Map of web_application_firewall values across all nginx_deployments, keyed the same as var.nginx_deployments"
-  value       = { for k, v in azurerm_nginx_deployment.nginx_deployments : k => v.web_application_firewall if v.web_application_firewall != null && length(v.web_application_firewall) > 0 }
+  value       = { for k, v in azurerm_nginx_deployment.nginx_deployments : k => one(v.web_application_firewall) if v.web_application_firewall != null && length(v.web_application_firewall) > 0 }
 }
 
